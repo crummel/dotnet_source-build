@@ -1,0 +1,25 @@
+From 281ecbef977cc2b2221985d404e1919d6279c944 Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Mon, 12 Nov 2018 14:32:30 -0600
+Subject: [PATCH] Sometimes this is dotnet.exe
+
+---
+ external/runtime/runtime.depproj | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/external/runtime/runtime.depproj b/external/runtime/runtime.depproj
+index 120512d..6391a72 100644
+--- a/external/runtime/runtime.depproj
++++ b/external/runtime/runtime.depproj
+@@ -69,7 +69,7 @@
+           SkipUnchangedFiles="true"
+           UseHardlinksIfPossible="true" />
+ 
+-    <Exec Command="chmod +x $(TestHostRootPath)dotnet" Condition="'$(RunningOnUnix)' == 'true'"/>
++    <Exec Command="chmod +x $(TestHostRootPath)dotnet" Condition="Exists('$(TestHostRootPath)dotnet')"/>
+   </Target>
+ 
+   <PropertyGroup>
+-- 
+2.9.5
+
