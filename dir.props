@@ -4,9 +4,6 @@
     <Configuration Condition="$(Configuration) == ''">Release</Configuration>
     <Platform Condition="'$(Platform)' == ''">x64</Platform>
 
-    <!-- true if we have bootstrapped buildtools (usually on an unsupported platform -->
-    <_IsBootstrapping Condition="'$(BootstrapBuildToolsDir)' != ''">true</_IsBootstrapping>
-
     <PortableBuild Condition="'$(OS)' == 'Windows_NT'">true</PortableBuild>
     <PortableBuild Condition="'$(PortableBuild)' == ''">false</PortableBuild>
     <UseSystemLibraries Condition="'$(UseSystemLibraries)' == '' AND '$(PortableBuild)' != 'true'">true</UseSystemLibraries>
@@ -54,6 +51,7 @@
     <ToolsLocalDir>$(ProjectDir)tools-local/</ToolsLocalDir>
     <TaskDirectory>$(ToolsLocalDir)tasks/</TaskDirectory>
     <TasksBinDir>$(TaskDirectory)Microsoft.DotNet.SourceBuild.Tasks/bin/Debug/netstandard2.0/</TasksBinDir>
+    <BuildTasksFeedDll>some arcade property for where it is/Microsoft.DotNet.Build.Tasks.Feed.dll</BuildTasksFeedDll>
     <LeakDetectionTasksBinDir>$(TaskDirectory)Microsoft.DotNet.SourceBuild.Tasks.LeakDetection/</LeakDetectionTasksBinDir>
     <BaseIntermediatePath>$(BaseOutputPath)obj/</BaseIntermediatePath>
     <OutputPath>$(BaseOutputPath)$(Platform)/$(Configuration)/</OutputPath>
@@ -142,11 +140,6 @@
     <CliInternalReleaseTag>source</CliInternalReleaseTag>
     <CliInternalBuildVersion>30000001-1</CliInternalBuildVersion>
   </PropertyGroup>
-
-  <!-- With Arcade, this package version is stored in a property we need to override. -->
-  <ItemGroup>
-    <ExtraPackageVersionPropsPackageInfo Include="BuildToolsPackageVersion" Version="$(BuildToolsPackageVersion)" />
-  </ItemGroup>
 
   <ItemGroup>
     <ExtraPackageVersionPropsPackageInfo Include="DotnetCliInternalVersion" Version="3.0.100-$(CliInternalReleaseTag)-$(CliInternalBuildVersion)" />

@@ -1,3 +1,4 @@
+set -x
 # Initialize variables if they aren't already defined.
 
 # CI mode - set to true on CI server for PR validation build or official build.

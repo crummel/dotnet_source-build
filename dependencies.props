@@ -7,7 +7,6 @@
   <PropertyGroup>
     <ProdConCurrentRef>79731c509a9d31b921f531ee63c48daa8e0c30d5</ProdConCurrentRef>
     <CoreClrCurrentRef>79731c509a9d31b921f531ee63c48daa8e0c30d5</CoreClrCurrentRef>
-    <BuildToolsCurrentRef>ba7a90f8cbc824737d0fae5ff230635a9764a1d7</BuildToolsCurrentRef>
   </PropertyGroup>
 
   <!-- Package dependency verification/auto-upgrade configuration. -->
@@ -15,12 +14,6 @@
     <BaseDotNetBuildInfo>build-info/dotnet/</BaseDotNetBuildInfo>
     <DependencyBranch>release/2.1</DependencyBranch>
     <CurrentRefXmlPath>$(MSBuildThisFileFullPath)</CurrentRefXmlPath>
-  </PropertyGroup>
-
-  <!-- Package versions used as toolsets -->
-  <PropertyGroup>
-    <BuildToolsPackage>microsoft.dotnet.buildtools</BuildToolsPackage>
-    <BuildToolsPackageVersion>$([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)BuildToolsVersion.txt').Trim())</BuildToolsPackageVersion>
   </PropertyGroup>
 
   <!--
@@ -45,10 +38,6 @@
       <BuildInfoPath>$(BaseDotNetBuildInfo)coreclr/$(DependencyBranch)</BuildInfoPath>
       <CurrentRef>$(CoreClrCurrentRef)</CurrentRef>
     </RemoteDependencyBuildInfo>
-    <RemoteDependencyBuildInfo Include="BuildTools">
-      <BuildInfoPath>$(BaseDotNetBuildInfo)buildtools/$(DependencyBranch)</BuildInfoPath>
-      <CurrentRef>$(BuildToolsCurrentRef)</CurrentRef>
-    </RemoteDependencyBuildInfo>
 
     <DependencyBuildInfo Include="@(RemoteDependencyBuildInfo)">
       <RawVersionsBaseUrl>https://raw.githubusercontent.com/dotnet/versions</RawVersionsBaseUrl>
@@ -68,11 +57,6 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(SkipBuildToolsUpdate)' != 'true'">
-    <UpdateStep Include="BuildTools">
-      <UpdaterType>File</UpdaterType>
-      <Path>$(MSBuildThisFileDirectory)BuildToolsVersion.txt</Path>
-      <PackageId>Microsoft.DotNet.BuildTools</PackageId>
-    </UpdateStep>
     <UpdateStep Include="CoreClr">
       <UpdaterType>File</UpdaterType>
       <Path>$(MSBuildThisFileDirectory)tools-local/ILAsmVersion.txt</Path>

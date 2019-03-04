@@ -219,7 +219,7 @@
           EnvironmentVariables="prodConBlobFeedUrl=$(ProdConBlobFeedUrl)" />
   </Target>
 
-  <UsingTask AssemblyFile="$(BuildToolsTaskDir)Microsoft.DotNet.Build.CloudTestTasks.dll" TaskName="UploadToAzure" />
+  <UsingTask AssemblyFile="$(BuildTasksFeedDll)" TaskName="UploadToAzure" />
 
   <Target Name="PublishPrebuiltReportData">
     <Error Text="RelativeBlobPath must be set to a non-empty string." Condition="'$(RelativeBlobPath)' == ''" />
