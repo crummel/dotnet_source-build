@@ -18,5 +18,9 @@
     <OrchestratedManifestBuildName>N/A</OrchestratedManifestBuildName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <BuiltSdkPackageOverride Include="@(CentralVersionsSdkOverride)" />
+  </ItemGroup>
+
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))/dir.targets" />
 </Project>
