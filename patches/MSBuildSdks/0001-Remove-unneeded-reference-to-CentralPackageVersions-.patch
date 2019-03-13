@@ -1,0 +1,24 @@
+From 35a4057cfc9d78ebea14540c91e1a0c6ea5a43fb Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Wed, 13 Mar 2019 14:02:15 -0500
+Subject: [PATCH] Remove unneeded reference to CentralPackageVersions in
+ CentralPackageVersions build.
+
+---
+ Directory.Build.targets | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/Directory.Build.targets b/Directory.Build.targets
+index 8b471b0..1129e63 100644
+--- a/Directory.Build.targets
++++ b/Directory.Build.targets
+@@ -50,6 +50,4 @@
+     </PropertyGroup>
+   </Target>
+ 
+-  <Import Project="Sdk.targets" Sdk="Microsoft.Build.CentralPackageVersions" />
+-
+ </Project>
+-- 
+2.18.0
+

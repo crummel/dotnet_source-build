@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))/dir.props" />
+  <PropertyGroup>
+    <MicrosoftBuildCentralPackageVersionsPackageVersion>2.0.1</MicrosoftBuildCentralPackageVersionsPackageVersion>
+
+    <BuildCommandArgs>pack</BuildCommandArgs>
+    <BuildCommandArgs>$(BuildCommandArgs) -c Release</BuildCommandArgs>
+    <BuildCommandArgs>$(BuildCommandArgs) /p:Version=$(MicrosoftBuildCentralPackageVersionsPackageVersion)</BuildCommandArgs>
+    <BuildCommandArgs>$(BuildCommandArgs) /bl:MSBuildSdks.binlog</BuildCommandArgs>
+    <BuildCommandArgs>$(BuildCommandArgs) $(ProjectDirectory)src/CentralPackageVersions/Microsoft.Build.CentralPackageVersions.csproj</BuildCommandArgs>
+
+    <BuildCommand>$(DotnetToolCommand) $(BuildCommandArgs)</BuildCommand>
+
+    <PackagesOutput>$(ProjectDirectory)src/CentralPackageVersions/bin/Release</PackagesOutput>
+
+    <RepoApiImplemented>false</RepoApiImplemented>
+    <OrchestratedManifestBuildName>N/A</OrchestratedManifestBuildName>
+  </PropertyGroup>
+
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.targets))/dir.targets" />
+</Project>
