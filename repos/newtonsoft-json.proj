@@ -11,7 +11,7 @@
     <NuGetConfigFile>$(ProjectDirectory)/Src/NuGet.Config</NuGetConfigFile>
     <NewtonsoftJsonKeyFilePath>$(KeysDir)Newtonsoft.Json.snk</NewtonsoftJsonKeyFilePath>
     <NewtonsoftJsonDirectory>$(ProjectDirectory)/Src/Newtonsoft.Json/</NewtonsoftJsonDirectory>
-    <NewtonsoftJsonProjectPath>$(NewtonsoftJsonDirectory)Newtonsoft.Json.Dotnet.csproj</NewtonsoftJsonProjectPath>
+    <NewtonsoftJsonProjectPath>$(NewtonsoftJsonDirectory)Newtonsoft.Json.csproj</NewtonsoftJsonProjectPath>
     <DotnetToolCommandArguments>"/p:DotnetOnly=true" "/p:Configuration=$(Configuration)" "/p:AssemblyOriginatorKeyFile=$(NewtonsoftJsonKeyFilePath)" "/p:SignAssembly=true" "/p:PublicSign=true" "/p:TreatWarningsAsErrors=false" "/p:AdditionalConstants=SIGNED"</DotnetToolCommandArguments>
     <BuildCommand>$(DotnetToolCommand) build $(NewtonsoftJsonProjectPath) $(DotnetToolCommandArguments)</BuildCommand>
     <BuildPackagesCommand>$(DotnetToolCommand) pack $(NewtonsoftJsonProjectPath) $(DotnetToolCommandArguments)</BuildPackagesCommand>
