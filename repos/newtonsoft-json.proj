@@ -9,10 +9,11 @@
 
   <PropertyGroup>
     <NuGetConfigFile>$(ProjectDirectory)/Src/NuGet.Config</NuGetConfigFile>
+    <Targetframeworks>net45;net40;net35;net20;netstandard1.0;netstandard1.3;netstandard2.0</Targetframeworks>
     <NewtonsoftJsonKeyFilePath>$(KeysDir)Newtonsoft.Json.snk</NewtonsoftJsonKeyFilePath>
     <NewtonsoftJsonDirectory>$(ProjectDirectory)/Src/Newtonsoft.Json/</NewtonsoftJsonDirectory>
     <NewtonsoftJsonProjectPath>$(NewtonsoftJsonDirectory)Newtonsoft.Json.csproj</NewtonsoftJsonProjectPath>
-    <DotnetToolCommandArguments>"/p:DotnetOnly=true" "/p:Configuration=$(Configuration)" "/p:AssemblyOriginatorKeyFile=$(NewtonsoftJsonKeyFilePath)" "/p:SignAssembly=true" "/p:PublicSign=true" "/p:TreatWarningsAsErrors=false" "/p:AdditionalConstants=SIGNED" "/p:TargetFrameworks='net45;net40;net35;net20;netstandard1.0;netstandard1.3;netstandard2.0'"</DotnetToolCommandArguments>
+    <DotnetToolCommandArguments>"/p:DotnetOnly=true" "/p:Configuration=$(Configuration)" "/p:AssemblyOriginatorKeyFile=$(NewtonsoftJsonKeyFilePath)" "/p:SignAssembly=true" "/p:PublicSign=true" "/p:TreatWarningsAsErrors=false" "/p:AdditionalConstants=SIGNED" "/p:TargetFrameworks=$(Targetframeworks)"</DotnetToolCommandArguments>
     <BuildCommand>$(DotnetToolCommand) build $(NewtonsoftJsonProjectPath) $(DotnetToolCommandArguments)</BuildCommand>
     <BuildPackagesCommand>$(DotnetToolCommand) pack $(NewtonsoftJsonProjectPath) $(DotnetToolCommandArguments)</BuildPackagesCommand>
     <CleanCommand>$(DotnetToolCommand) clean $(NewtonsoftJsonProjectPath) $(DotnetToolCommandArguments)</CleanCommand>
