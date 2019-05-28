@@ -95,8 +95,8 @@
 
     <!-- external dependencies, not handled by Maestro/Arcade -->
     <Dependency Name="Newtonsoft.Json" Version="12.0.2">
-      <Uri>https://github.com/JamesNK/Newtonsoft.Json</Uri>
-      <Sha>4ab34b0461fb595805d092a46a58f35f66c84d6a</Sha>
+      <Uri>https://github.com/adaggarwal/Newtonsoft.Json</Uri>
+      <Sha>252b0a02a539d144a246267010b91870c86744e8</Sha>
       <RepoName>newtonsoft-json</RepoName>
     </Dependency>
 
