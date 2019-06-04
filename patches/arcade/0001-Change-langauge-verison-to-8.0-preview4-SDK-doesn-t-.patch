@@ -1,15 +1,15 @@
-From ff005e44771ca93ee6314c30ea0926c008040796 Mon Sep 17 00:00:00 2001
+From 6f43edaef0be1eea3b968c858682a9614001102f Mon Sep 17 00:00:00 2001
 From: Chris Rummel <crummel@microsoft.com>
 Date: Wed, 29 May 2019 19:34:58 -0500
-Subject: [PATCH] Change langauge verison to 8.0 - preview4 SDK doesn't support
- latest.
+Subject: [PATCH 1/6] Change langauge verison to 8.0 - preview4 SDK doesn't
+ support latest.
 
 ---
- src/Microsoft.DotNet.Arcade.Sdk/Microsoft.DotNet.Arcade.Sdk.csproj | 2 +-
+ .../Microsoft.DotNet.Arcade.Sdk.csproj                          | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/Microsoft.DotNet.Arcade.Sdk/Microsoft.DotNet.Arcade.Sdk.csproj b/src/Microsoft.DotNet.Arcade.Sdk/Microsoft.DotNet.Arcade.Sdk.csproj
-index aaaf4da..dff7004 100644
+index aaaf4dac..dff7004d 100644
 --- a/src/Microsoft.DotNet.Arcade.Sdk/Microsoft.DotNet.Arcade.Sdk.csproj
 +++ b/src/Microsoft.DotNet.Arcade.Sdk/Microsoft.DotNet.Arcade.Sdk.csproj
 @@ -2,7 +2,7 @@
@@ -22,5 +22,5 @@ index aaaf4da..dff7004 100644
      <ExcludeFromSourceBuild>false</ExcludeFromSourceBuild>
  
 -- 
-1.8.3.1
+2.18.0
 
