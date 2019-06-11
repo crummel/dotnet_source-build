@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PreferredHash>48431cc037776ca359de36bf71bda8c154cc2aa9</PreferredHash>
+    <PreferredHash>730c3c5c66183418adbbc63acd40d261c9ce23ed</PreferredHash>
   </PropertyGroup>
 
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), dir.props))/dir.props" />
@@ -9,7 +9,7 @@
   <PropertyGroup>
     <BuildArguments>$(Platform) $(Configuration) skiptests</BuildArguments>
     <BuildArguments Condition="'$(OS)' != 'Windows_NT'">$(BuildArguments) -ignoreWarnings</BuildArguments>
-    <BuildArguments Condition="'$(OS)' != 'Windows_NT'">$(BuildArguments) -skipgenerateversion</BuildArguments>
+    <BuildArguments>$(BuildArguments) -skipgenerateversion</BuildArguments>
     <BuildArguments Condition="'$(OS)' != 'Windows_NT'">$(BuildArguments) -skiprestore</BuildArguments>
     <BuildArguments Condition="'$(SkipDisablePgo)' != 'true'">$(BuildArguments) -nopgooptimize</BuildArguments>
     <BuildArguments Condition="'$(OS)' != 'Windows_NT'">$(BuildArguments) msbuildonunsupportedplatform</BuildArguments>
