@@ -1,0 +1,25 @@
+From b086388277782f6e4afba78e4c228d5fb076e0c8 Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Sat, 22 Jun 2019 19:17:10 -0500
+Subject: [PATCH 3/4] Don't install 2.1 SDK.
+
+---
+ eng/build.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/eng/build.sh b/eng/build.sh
+index faaf32bd21..5a331c27d6 100755
+--- a/eng/build.sh
++++ b/eng/build.sh
+@@ -281,7 +281,7 @@ function BuildSolution {
+ InitializeDotNetCli $restore
+ 
+ # Make sure we have a 2.1 runtime available for running our tests
+-InstallDotNetSdk $_InitializeDotNetCli 2.1.503
++# InstallDotNetSdk $_InitializeDotNetCli 2.1.503
+ 
+ bootstrap_dir=""
+ if [[ "$bootstrap" == true ]]; then
+-- 
+2.18.0
+

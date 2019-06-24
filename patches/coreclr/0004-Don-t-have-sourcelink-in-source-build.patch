@@ -1,0 +1,26 @@
+From b0dc361d7fefb40a5d0de80fd84977a34671c2c1 Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Sun, 23 Jun 2019 09:24:01 -0500
+Subject: [PATCH 4/4] Don't have sourcelink in source-build.
+
+---
+ src/.nuget/packages.builds | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/.nuget/packages.builds b/src/.nuget/packages.builds
+index 3ed5f64bdd..412639ea6d 100644
+--- a/src/.nuget/packages.builds
++++ b/src/.nuget/packages.builds
+@@ -28,8 +28,7 @@
+        The InitializeSourceControlInformationFromSourceControlManager is part of Microsoft.Build.Tasks.Git
+        and is responsible for setting SourceRevisionId -->
+   <Target Name="GenerateVersionInfoFileForPackages"
+-          BeforeTargets="Build"
+-          DependsOnTargets="InitializeSourceControlInformationFromSourceControlManager">
++          BeforeTargets="Build">
+ 
+     <Error Condition="'$(SourceRevisionId)' == ''" Text="SourceRevisionId is not set, which means the SourceLink targets are not included in the build. Those are needed to produce a correct sha for our build outputs." />
+ 
+-- 
+2.18.0
+

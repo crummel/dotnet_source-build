@@ -1,0 +1,25 @@
+From 4cab1f8fafe90a2915d1fd2b22008190c824da46 Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Sun, 23 Jun 2019 20:47:57 -0500
+Subject: [PATCH 2/2] Disable new warning.
+
+---
+ Directory.Build.props | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Directory.Build.props b/Directory.Build.props
+index 20f6a94fac..c2318f9887 100644
+--- a/Directory.Build.props
++++ b/Directory.Build.props
+@@ -331,7 +331,7 @@
+     <GenFacadesIgnoreBuildAndRevisionMismatch>true</GenFacadesIgnoreBuildAndRevisionMismatch>
+ 
+     <!-- Warnings -->
+-    <NoWarn>$(NoWarn);CS8609</NoWarn> <!-- TODO: Remove CS8609 once https://github.com/dotnet/roslyn/issues/23268 is consumed. -->
++    <NoWarn>$(NoWarn);CS8609;CS8632</NoWarn> <!-- TODO: Remove CS8609 once https://github.com/dotnet/roslyn/issues/23268 is consumed. -->
+   </PropertyGroup>
+ 
+   <!-- Set up some common paths -->
+-- 
+2.18.0
+

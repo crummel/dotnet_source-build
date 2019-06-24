@@ -38,7 +38,7 @@
     </Dependency>
     <Dependency Name="Microsoft.NETCore.Compilers" Version="3.1.1-beta4-19281-06">
       <Uri>https://github.com/dotnet/roslyn</Uri>
-      <Sha>58a4b1e79aea28115e66b06f850c83a3f1fcb6d3</Sha>
+      <Sha>b3e37bec41922995e20b3d65435077c2fcfaee6d</Sha>
     </Dependency>
     <Dependency Name="Microsoft.Build" Version="16.2.0-preview-19278-01">
       <Uri>https://github.com/microsoft/msbuild</Uri>

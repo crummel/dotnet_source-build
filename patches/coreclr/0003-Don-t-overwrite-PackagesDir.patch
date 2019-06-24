@@ -1,0 +1,34 @@
+From 67fce5c2479d51ffc86693e6761a16069389b99d Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Sat, 22 Jun 2019 22:13:06 -0500
+Subject: [PATCH 3/4] Don't overwrite PackagesDir
+
+---
+ dir.common.props | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/dir.common.props b/dir.common.props
+index b44e54286e..66a3f11b8e 100644
+--- a/dir.common.props
++++ b/dir.common.props
+@@ -6,14 +6,14 @@
+ 
+   <PropertyGroup>
+     <CoreclrDir>$(MSBuildThisFileDirectory)</CoreclrDir>
+-    <PackagesDir>$(CoreclrDir)/.packages/</PackagesDir>
++    <PackagesDir Condition="'$(PackagesDir)' == ''">$(CoreclrDir)/.packages/</PackagesDir>
+   </PropertyGroup>
+ 
+   <!-- Define NuGet properties for scenarios where they aren't set. From the command line.
+        Should match Nuget.config at root. -->
+   <PropertyGroup>
+-    <NuGetPackageRoot>$(PackagesDir)</NuGetPackageRoot>
+-    <RestorePackagesPath>$(PackagesDir)</RestorePackagesPath>
++    <NuGetPackageRoot Condition="'$(NuGetPackageRoot)' == ''">$(PackagesDir)</NuGetPackageRoot>
++    <RestorePackagesPath Condition="'$(RestorePackagesPath)' == ''">$(PackagesDir)</RestorePackagesPath>
+   </PropertyGroup>
+ 
+   <!-- Set default Configuration and Platform -->
+-- 
+2.18.0
+

@@ -1,7 +1,7 @@
-From 28f0779675da39333b3027df9b5d1b1b5f6c0dc5 Mon Sep 17 00:00:00 2001
+From 9a8a368ca83d349188d8424cf22adb2fa65d0574 Mon Sep 17 00:00:00 2001
 From: Chris Rummel <crummel@microsoft.com>
 Date: Sun, 9 Jun 2019 20:19:22 -0500
-Subject: [PATCH] Feed project automatically tries to publish.
+Subject: [PATCH 1/2] Feed project automatically tries to publish.
 
 ---
  eng/Tools.props | 4 +++-

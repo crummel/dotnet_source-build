@@ -1,0 +1,23 @@
+From 32df8c845e3a7367a134d25818bf3eb0a3ef944c Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Thu, 20 Jun 2019 01:14:16 -0500
+Subject: [PATCH 2/4] Ignore new warning
+
+---
+ Directory.Build.props | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Directory.Build.props b/Directory.Build.props
+index 917b9a84b6..2477ca2009 100644
+--- a/Directory.Build.props
++++ b/Directory.Build.props
+@@ -15,5 +15,6 @@
+   <PropertyGroup>
+     <!-- Enables Strict mode for Roslyn compiler -->
+     <Features>strict</Features>
++    <NoWarn>$(NoWarn);CS8632</NoWarn>
+   </PropertyGroup>
+ </Project>
+-- 
+2.18.0
+

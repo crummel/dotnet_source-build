@@ -1,0 +1,27 @@
+From bf8bc45c43ae76948a3d2a3d31ae1f924c293d0f Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Sat, 22 Jun 2019 20:29:38 -0500
+Subject: [PATCH 4/4] Don't include DiaSymReader.
+
+---
+ .../DesktopCompilerArtifacts.targets                          | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/NuGet/Microsoft.Net.Compilers.Toolset/DesktopCompilerArtifacts.targets b/src/NuGet/Microsoft.Net.Compilers.Toolset/DesktopCompilerArtifacts.targets
+index 080bbea726..4cfac7a44e 100644
+--- a/src/NuGet/Microsoft.Net.Compilers.Toolset/DesktopCompilerArtifacts.targets
++++ b/src/NuGet/Microsoft.Net.Compilers.Toolset/DesktopCompilerArtifacts.targets
+@@ -19,8 +19,8 @@
+       
+       <!-- The Roslyn built binaries must be taken from these locations because this is the location where signing occurs -->
+       <DesktopCompilerArtifact Include="$(ArtifactsBinDir)Microsoft.CodeAnalysis\$(Configuration)\netstandard2.0\Microsoft.CodeAnalysis.dll" NgenArchitecture="all" NgenApplication="VBCSCompiler.exe"/>
+-      <DesktopCompilerArtifact Include="$(ArtifactsBinDir)Microsoft.CodeAnalysis\$(Configuration)\netstandard2.0\Microsoft.DiaSymReader.Native.amd64.dll"/>
+-      <DesktopCompilerArtifact Include="$(ArtifactsBinDir)Microsoft.CodeAnalysis\$(Configuration)\netstandard2.0\Microsoft.DiaSymReader.Native.x86.dll"/>
++      <DesktopCompilerArtifact Include="$(ArtifactsBinDir)Microsoft.CodeAnalysis\$(Configuration)\netstandard2.0\Microsoft.DiaSymReader.Native.amd64.dll" Condition="'$(DotNetBuildFromSource)' != 'true'" />
++      <DesktopCompilerArtifact Include="$(ArtifactsBinDir)Microsoft.CodeAnalysis\$(Configuration)\netstandard2.0\Microsoft.DiaSymReader.Native.x86.dll" Condition="'$(DotNetBuildFromSource)' != 'true'" />
+       <DesktopCompilerArtifact Include="$(ArtifactsBinDir)Microsoft.CodeAnalysis.CSharp\$(Configuration)\netstandard2.0\Microsoft.CodeAnalysis.CSharp.dll" NgenArchitecture="all" NgenApplication="VBCSCompiler.exe"/>
+       <DesktopCompilerArtifact Include="$(ArtifactsBinDir)Microsoft.CodeAnalysis.Scripting\$(Configuration)\netstandard2.0\Microsoft.CodeAnalysis.Scripting.dll" NgenArchitecture="all" NgenApplication="csi.exe"/>
+       <DesktopCompilerArtifact Include="$(ArtifactsBinDir)Microsoft.CodeAnalysis.CSharp.Scripting\$(Configuration)\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll" NgenArchitecture="all" NgenApplication="csi.exe"/>
+-- 
+2.18.0
+
