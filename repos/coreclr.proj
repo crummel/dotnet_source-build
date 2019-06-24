@@ -42,6 +42,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <UseSourceBuiltSdkOverride Include="@(ArcadeSdkOverride)" />
     <BuiltSdkPackageOverride Include="@(ILSdkOverride)" />
   </ItemGroup>
 
