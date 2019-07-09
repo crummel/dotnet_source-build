@@ -15,7 +15,7 @@ index 3db39a04ef..7bee158492 100644
      <!-- disable warnings about obsolete APIs -->
      <NoWarn>$(NoWarn);0809;0618</NoWarn>
      <Configurations>netcoreapp-Debug;netcoreapp-Release;uap-Debug;uap-Release</Configurations>
-+    <Nullable>true</Nullable>
++    <Nullable>enable</Nullable>
    </PropertyGroup>
    <ItemGroup>
      <Compile Include="System.Runtime.cs" />
