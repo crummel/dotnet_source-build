@@ -26,7 +26,7 @@
     </Dependency>
     <Dependency Name="Microsoft.Private.CoreFx.NETCoreApp" Version="4.6.0-preview6.19264.9">
       <Uri>https://github.com/dotnet/corefx</Uri>
-      <Sha>a28176b5ec68b6da1472934fe9493790d1665cae</Sha>
+      <Sha>a78bd7308555926f88aad3d0ecaaebae0f9204cc</Sha>
     </Dependency>
     <Dependency Name="Microsoft.NETCore.App" Version="3.0.0-preview6-27804-01">
       <Uri>https://github.com/dotnet/core-setup</Uri>

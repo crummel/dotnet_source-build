@@ -1,0 +1,29 @@
+From 77ae632361fa776afa68a9281eb5648e483c48ab Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Fri, 28 Jun 2019 14:31:30 -0500
+Subject: [PATCH 2/2] Add Nullable=true for new SDK.
+
+---
+ src/System.Runtime/ref/System.Runtime.csproj | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/System.Runtime/ref/System.Runtime.csproj b/src/System.Runtime/ref/System.Runtime.csproj
+index 3db39a04ef..7bee158492 100644
+--- a/src/System.Runtime/ref/System.Runtime.csproj
++++ b/src/System.Runtime/ref/System.Runtime.csproj
+@@ -7,9 +7,10 @@
+     <!-- disable warnings about obsolete APIs -->
+     <NoWarn>$(NoWarn);0809;0618</NoWarn>
+     <Configurations>netcoreapp-Debug;netcoreapp-Release;uap-Debug;uap-Release</Configurations>
++    <Nullable>true</Nullable>
+   </PropertyGroup>
+   <ItemGroup>
+     <Compile Include="System.Runtime.cs" />
+     <Compile Include="System.Runtime.Manual.cs" />
+   </ItemGroup>
+-</Project>
+\ No newline at end of file
++</Project>
+-- 
+2.18.0
+

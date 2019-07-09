@@ -1,14 +1,14 @@
-From ba0062877b5fb46fac5a26f6b5d9e753be0af6d8 Mon Sep 17 00:00:00 2001
+From 9182bc10632de4aa1028f58ce9e5bb98750e0776 Mon Sep 17 00:00:00 2001
 From: Chris Rummel <crummel@microsoft.com>
 Date: Thu, 20 Jun 2019 07:26:25 -0500
-Subject: [PATCH 2/2] Exclude XUnit project from source-build.
+Subject: [PATCH 1/2] Exclude XUnit project from source-build.
 
 ---
  external/test-runtime/XUnit.Runtime.depproj | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/external/test-runtime/XUnit.Runtime.depproj b/external/test-runtime/XUnit.Runtime.depproj
-index fb9c74afa1..d3e93f0f65 100644
+index a6b9a06597..5f8fbfd4a1 100644
 --- a/external/test-runtime/XUnit.Runtime.depproj
 +++ b/external/test-runtime/XUnit.Runtime.depproj
 @@ -27,6 +27,7 @@
