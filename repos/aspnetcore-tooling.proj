@@ -28,11 +28,6 @@
     <GlobalJsonFile>$(ProjectDirectory)global.json</GlobalJsonFile>
     <NuGetConfigFile>$(ProjectDirectory)NuGet.config</NuGetConfigFile>
     <UpdateGlobalJsonToV3Sdk>true</UpdateGlobalJsonToV3Sdk>
-
-    <EnvironmentRestoreSources>$(SourceBuiltPackagesPath)</EnvironmentRestoreSources>
-    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' == 'true'">$(EnvironmentRestoreSources)%3B$(ReferencePackagesDir)%3B$(PrebuiltPackagesPath)</EnvironmentRestoreSources>
-    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://api.nuget.org/v3/index.json</EnvironmentRestoreSources>
-    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnetfeed.blob.core.windows.net/dotnet-core/index.json</EnvironmentRestoreSources>
   </PropertyGroup>
 
   <ItemGroup>
@@ -48,8 +43,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EnvironmentVariables Include="RestoreSources=$(EnvironmentRestoreSources)" />
-
     <!-- reset SDK location variables to use 3.0 SDK override -->
     <EnvironmentVariables Remove="DOTNET_TOOL_DIR=$(DotNetCliToolDir)" />
     <EnvironmentVariables Remove="DotNetCoreSdkDir=$(DotNetCliToolDir)" />

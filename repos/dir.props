@@ -52,6 +52,44 @@
     <ProjectBuildReason Condition="'$(OfflineBuild)' == 'true'">$(ProjectBuildReason) in tarball</ProjectBuildReason>
   </PropertyGroup>
 
+  <!-- some repos haven't updated to the latest version of Arcade yet, which moves the list of NuGet feeds into NuGet.config. -->
+  <!-- in the meantime, we can supply the feeds via the RestoreSources environment variable.  This is the full union of all feeds
+       used by projects so we don't have to do it repo-by-repo. -->
+  <PropertyGroup>
+    <EnvironmentRestoreSources>$(SourceBuiltPackagesPath)</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' == 'true'">$(EnvironmentRestoreSources)%3B$(ReferencePackagesDir)%3B$(PrebuiltPackagesPath)</EnvironmentRestoreSources>
+
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://api.nuget.org/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/aspnetcore-tools/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/dotnet-buildtools/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/dotnet-core/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/dotnet-coreclr/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/dotnet-corefxtestdata/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/experimental-vs-packages/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/interactive-window/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/metadata-tools/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/roslyn-analyzers/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/roslyn-master-nightly/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/roslyn-tools/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/roslyn/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/sourcelink/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/symreader-converter/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/symreader-native/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/symreader-portable/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/symreader/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnet.myget.org/F/system-commandline/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnetfeed.blob.core.windows.net/aspnet-aspnetcore/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnetfeed.blob.core.windows.net/aspnet-blazor/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnetfeed.blob.core.windows.net/dotnet-core/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://dotnetfeed.blob.core.windows.net/dotnet-coreclr/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://myget.org/F/roslyn_concord/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://myget.org/F/vs-devcore/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://myget.org/F/vs-editor/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://vside.myget.org/F/vs-impl/api/v3/index.json</EnvironmentRestoreSources>
+    <EnvironmentRestoreSources Condition="'$(OfflineBuild)' != 'true'">$(EnvironmentRestoreSources)%3Bhttps://vside.myget.org/F/vssdk/api/v3/index.json</EnvironmentRestoreSources>
+  </PropertyGroup>
+
   <ItemGroup>
     <EnvironmentVariables Include="DOTNET_TOOL_DIR=$(DotNetCliToolDir)" />
     <EnvironmentVariables Include="DotNetToolPath=$(DotNetCliToolDir)" />
@@ -83,6 +121,8 @@
     <EnvironmentVariables Include="PreReleaseVersionLabel=$(VersionStamp)" Condition="'$(VersionStamp)' != ''" />
     <EnvironmentVariables Include="DotNetUseShippingVersions=true" />
     <EnvironmentVariables Include="ContinuousIntegrationBuild=true" />
+
+    <EnvironmentVariables Include="RestoreSources=$(EnvironmentRestoreSources)" />
 
     <!-- If MSBuild exits early, make sure debug output like 'MSBuild_*.failure.txt' ends up in a place we can see it. -->
     <EnvironmentVariables Include="MSBUILDDEBUGPATH=$(MSBuildDebugPathTargetDir)" />
