@@ -25,7 +25,7 @@
     Inputs="$(TargetInfoProps)"
     Outputs="$(BuildCompetedSuccessSemaphore)"
     >
-    <CallTarget Targets="BuildXPlatTasks;BuildDarc;FetchSources;WriteSourceLinkMetadata;BuildTasks;ExtractToolPackage;InstallSourceBuildSdkResolver;WriteDynamicPropsToStaticPropsFiles;GenerateRootFs;ApplyPatches;PoisonPrebuiltPackages" />
+    <CallTarget Targets="BuildXPlatTasks;FetchSources;BuildTasks;ExtractToolPackage;InstallSourceBuildSdkResolver;WriteDynamicPropsToStaticPropsFiles;GenerateRootFs;ApplyPatches;PoisonPrebuiltPackages" />
     <Touch Files="$(BuildCompetedSuccessSemaphore)" AlwaysCreate="true" />
   </Target>
 
@@ -150,30 +150,38 @@
     <Message Importance="High" Text="[$([System.DateTime]::Now.ToString('HH:mm:ss.ff'))] Done building Darc." />
   </Target>
 
-  <Target Name="FetchSources" Condition="'$(OfflineBuild)' != 'true'" DependsOnTargets="BuildDarc">
+  <Target Name="FetchSources" Condition="'$(OfflineBuild)' != 'true'">
     <Message Importance="High" Text="[$([System.DateTime]::Now.ToString('HH:mm:ss.ff'))] Getting source code for repos in Version.Details.xml." />
-    <PropertyGroup>
-      <DarcCloneArguments>clone</DarcCloneArguments>
-      <DarcCloneArguments>$(DarcCloneArguments) --repos-folder $(ClonedSubmoduleDirectory)</DarcCloneArguments>
-      <DarcCloneArguments>$(DarcCloneArguments) --git-dir-folder $(ClonedSubmoduleGitRootDirectory)</DarcCloneArguments>
-      <DarcCloneArguments>$(DarcCloneArguments) --include-toolset</DarcCloneArguments>
-      <IgnoredRepos/>
-      <IgnoredRepos>$(IgnoredRepos);https://dev.azure.com/dnceng/internal/_git/dotnet-optimization</IgnoredRepos>
-      <IgnoredRepos>$(IgnoredRepos);https://dev.azure.com/devdiv/DevDiv/_git/DotNet-Trusted</IgnoredRepos>
-      <IgnoredRepos>$(IgnoredRepos);https://devdiv.visualstudio.com/DevDiv/_git/DotNet-Trusted</IgnoredRepos>
-      <IgnoredRepos>$(IgnoredRepos);https://dnceng@dev.azure.com/dnceng/internal/_git/dotnet-optimization</IgnoredRepos>
-      <IgnoredRepos>$(IgnoredRepos);https://dev.azure.com/dnceng/internal/_git/dotnet-core-setup</IgnoredRepos>
-      <DarcCloneArguments>$(DarcCloneArguments) --ignore-repos "$(IgnoredRepos)"</DarcCloneArguments>
-      <!-- required so Darc doesn't throw an error for missing auth -->
-      <DarcCloneArguments>$(DarcCloneArguments) --azdev-pat bogus</DarcCloneArguments>
-      <DarcCloneArguments>$(DarcCloneArguments) --github-pat bogus</DarcCloneArguments>
-      <!-- depth 0 should be sufficient for us since we explictly declare all our dependencies -->
-      <DarcCloneArguments>$(DarcCloneArguments) --depth 0</DarcCloneArguments>
-      <DarcCloneArguments>$(DarcCloneArguments) --debug</DarcCloneArguments>
-      <DarcCloneCommand>$(DotNetCliToolDir)dotnet $(DarcDll) $(DarcCloneArguments)</DarcCloneCommand>
-    </PropertyGroup>
-    <Message Importance="High" Text="[$([System.DateTime]::Now.ToString('HH:mm:ss.ff'))] Running Darc command: '$(DarcCloneCommand)'" />
-    <Exec Command="$(DarcCloneCommand)" WorkingDirectory="$(ProjectDir)" />
+    <ItemGroup>
+      <Repo Include="https://github.com/aspnet/xdt" Sha="c01a538851a8ab1a1fbeb2e6243f391fff7587b4" />
+      <Repo Include="https://github.com/mono/linker" Sha="18ff3f49475c3fc3fafa1d17161b1525eea182d8" />
+      <Repo Include="https://github.com/dotnet/arcade" Sha="8f3c22397990aeb20a88690b51dad4b33f21e7ff" />
+      <Repo Include="https://github.com/dotnet/coreclr" Sha="ac25be694a5385a6a1496db40de932df0689b742" />
+      <Repo Include="https://github.com/dotnet/standard" Sha="56a4d43c963e533f5392c2c4f7b710f3ab98b5bd" />
+      <Repo Include="https://github.com/dotnet/corefx" Sha="1bb52e6a3db7f3673a3825f3677b9f27b9af99aa" />
+      <Repo Include="https://github.com/dotnet/core-setup" Sha="d01b2fb7bc6bd4911e157fbd51353059a3ba1a6c" />
+      <Repo Include="https://github.com/aspnet/AspNetCore-Tooling" Sha="3cbb59559b5c0488bab471c0b8c0f2ecf14d5767" />
+      <Repo Include="https://github.com/dotnet/templating" Sha="e8d6da33000a416b2b36b4f04b1756dcc99f671d" />
+      <Repo Include="https://github.com/dotnet/roslyn" Sha="ef3a7a3863ae53b610a4b0c3682a35cad0829583" />
+      <Repo Include="https://github.com/Microsoft/msbuild" Sha="dd8019d9e1de5080594965f27618b524dab8a34d" />
+      <Repo Include="https://github.com/NuGet/NuGet.Client" Sha="27af96bdb7ba8d6d7ea9ad53fc76cd1d1aa80703" />
+      <Repo Include="https://github.com/aspnet/Extensions" Sha="dea3f207c8ea27f2a13ab15880df58ff91b42dfa" />
+      <Repo Include="https://github.com/dotnet/sdk" Sha="7c9956bc0e4c5fe5390ce82a9806dbf8af9d050e" />
+      <Repo Include="https://github.com/dotnet/cliCommandLineParser" Sha="0e89c2116ad28e404ba56c14d1c3f938caa25a01" />
+      <Repo Include="https://github.com/Microsoft/ApplicationInsights-dotnet" Sha="53b80940842204f78708a538628288ff5d741a1d"/>
+      <Repo Include="https://github.com/dotnet/xliff-tasks" Sha="173ee3bd61c9549557eefa3cfb718bdef157cb87" />
+      <Repo Include="https://github.com/dotnet/cli" Sha="1f3f34004a494b55121d05fd3d5e1ca7b0bb6a37" />
+      <Repo Include="https://github.com/dotnet/fsharp" Sha="d4884581c1e7a93232914a2e335928210d8ddd84" />
+      <Repo Include="https://github.com/aspnet/websdk" Sha="95bd95faa6847f759e033d8647733a7c56f7c6c8" />
+      <Repo Include="https://github.com/microsoft/vstest" Sha="1e37ee32dbba48ad797b03bff0058c5c60a3a770" />
+      <Repo Include="https://github.com/dotnet/toolset" Sha="9c8c1c85d181cde1d7c43180c4072ce4c2f54adb" />
+      <Repo Include="https://github.com/dotnet/core-sdk" Sha="8bf06ffc8d99abcc7c8a923e90b35d122887976d" />
+      <Repo Include="https://github.com/adaggarwal/Newtonsoft.Json" Sha="cac0690ad133c5e166ce5642dc71175791404fad" />
+      <Repo Include="https://github.com/adaggarwal/Newtonsoft.Json" Sha="e43dae94c26f0c30e9095327a3a9eac87193923d" />
+      <Repo Include="https://github.com/aspnet/common" Sha="6e37cdfe96ac8b06a923242120169fafacd720e6" />
+    </ItemGroup>
+    <Exec Command="git clone %(Repo.Identity) $([System.String]::new('%(Repo.Identity)').Substring($([MSBuild]::Add($([System.String]::new('%(Repo.Identity)').LastIndexOf('/')), 1)))).%(Repo.Sha)" WorkingDirectory="$(ClonedSubmoduleDirectory)" />
+    <Exec Command="git checkout -f %(Repo.Sha)" WorkingDirectory="$(ClonedSubmoduleDirectory)/$([System.String]::new('%(Repo.Identity)').Substring($([MSBuild]::Add($([System.String]::new('%(Repo.Identity)').LastIndexOf('/')), 1)))).%(Repo.Sha)" />
     <Message Importance="High" Text="[$([System.DateTime]::Now.ToString('HH:mm:ss.ff'))] Done getting source code for repos in Version.Details.xml." />
   </Target>
 

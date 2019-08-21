@@ -7,8 +7,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <CoreSetupPlatformAbstractionsPath Condition="'$(OfflineBuild)' != 'true'">$(ClonedSubmoduleDirectory)core-setup.$(coresetupGitCommitHash)/src/managed/Microsoft.DotNet.PlatformAbstractions/</CoreSetupPlatformAbstractionsPath>
-    <CoreSetupPlatformAbstractionsPath Condition="'$(OfflineBuild)' == 'true'">$(SubmoduleDirectory)core-setup.$(coresetupGitCommitHash)/src/managed/Microsoft.DotNet.PlatformAbstractions/</CoreSetupPlatformAbstractionsPath>
+    <CoreSetupPlatformAbstractionsPath Condition="'$(OfflineBuild)' != 'true'">$(ClonedSubmoduleDirectory)core-setup.d01b2fb7bc6bd4911e157fbd51353059a3ba1a6c/src/managed/Microsoft.DotNet.PlatformAbstractions/</CoreSetupPlatformAbstractionsPath>
+    <CoreSetupPlatformAbstractionsPath Condition="'$(OfflineBuild)' == 'true'">$(SubmoduleDirectory)core-setup.d01b2fb7bc6bd4911e157fbd51353059a3ba1a6c/src/managed/Microsoft.DotNet.PlatformAbstractions/</CoreSetupPlatformAbstractionsPath>
     <OutputPath>$(MSBuildThisFileDirectory)bin/$(Configuration)</OutputPath>
   </PropertyGroup>
 
