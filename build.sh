@@ -44,13 +44,8 @@ for arg do
     (-test) set -- "$@" "/t:RunTests"
             alternateTarget=true
             ;;
-    (--run-smoke-test) set -- "$@" "/t:RunSmokeTest"
-            alternateTarget=true
-            ;;
-    (--publish-prebuilt-report) set -- "$@" "/t:PublishPrebuiltReportData"
-            alternateTarget=true
-            ;;
-    (--generate-prebuilt-data) set -- "$@" "/t:GeneratePrebuiltBurndownData"
+    (--target) set -- "$@" "/t:$1"
+            shift
             alternateTarget=true
             ;;
        (*) set -- "$@" "$arg" ;;
@@ -65,6 +60,9 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 export DOTNET_MULTILEVEL_LOOKUP=0
 export NUGET_PACKAGES="$scriptroot/packages/"
+
+source $scriptroot/eng/common/tools.sh
+source $scriptroot/eng/common/darc-init.sh
 
 set -x
 scriptroot="$( cd -P "$( dirname "$source" )" && pwd )"
