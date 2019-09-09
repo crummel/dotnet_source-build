@@ -62,7 +62,8 @@ export DOTNET_MULTILEVEL_LOOKUP=0
 export NUGET_PACKAGES="$scriptroot/packages/"
 
 source $scriptroot/eng/common/tools.sh
-source $scriptroot/eng/common/darc-init.sh
+InitializeDotNetCli true # install the bootstrap CLI
+$scriptroot/eng/common/darc-init.sh
 
 set -x
 scriptroot="$( cd -P "$( dirname "$source" )" && pwd )"
