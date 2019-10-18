@@ -3,3 +3,23 @@ jobs:
   parameters:
     windowsPoolName: NetCoreInternal-Int-Pool
     windowsQueueName: buildpool.windows.10.amd64.vs2017
+
+- ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+  - template: /eng/common/templates/job/publish-build-assets.yml
+    parameters:
+      dependsOn:
+        - Linux
+        - Darwin
+      enablePublishBuildArtifacts: true
+      pool:
+        vmImage: vs2017-win2016
+
+- ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+  - template: /eng/common/templates/job/generate-graph-files.yml
+    parameters:
+      continueOnError: true
+      includeToolset: false
+      dependsOn:
+        - Asset_Registry_Publish
+      pool:
+        vmImage: vs2017-win2016
