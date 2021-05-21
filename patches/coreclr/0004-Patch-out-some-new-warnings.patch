@@ -4,20 +4,21 @@ Date: Fri, 21 May 2021 12:29:55 -0500
 Subject: [PATCH] Patch out some new warnings.
 
 ---
- compileoptions.cmake | 4 ++++
- 1 file changed, 4 insertions(+)
+ compileoptions.cmake | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/compileoptions.cmake b/compileoptions.cmake
 index 9c352e8bab..7845b51f41 100644
 --- a/compileoptions.cmake
 +++ b/compileoptions.cmake
-@@ -52,6 +52,10 @@ if (CLR_CMAKE_PLATFORM_UNIX)
+@@ -52,6 +52,11 @@ if (CLR_CMAKE_PLATFORM_UNIX)
    # may not generate the same object layout as MSVC.
    add_compile_options(-Wno-incompatible-ms-struct)
  
 +  # ignore warnings introduced after the official build's version of clang
 +  add_compile_options(-Wno-pointer-to-int-cast)
 +  add_compile_options(-Wno-misleading-indentation)
++  add_compile_options(-Wno-alloca)
 +
    # Some architectures (e.g., ARM) assume char type is unsigned while CoreCLR assumes char is signed
    # as x64 does. It has been causing issues in ARM (https://github.com/dotnet/coreclr/issues/4746)
