@@ -1,0 +1,24 @@
+From 40c5ff25351071e24ccfb57d0cb31abed5c475c2 Mon Sep 17 00:00:00 2001
+From: Chris Rummel <crummel@microsoft.com>
+Date: Sun, 23 May 2021 14:45:11 -0500
+Subject: [PATCH] Patch out new warning.
+
+---
+ src/Native/Unix/CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/Native/Unix/CMakeLists.txt b/src/Native/Unix/CMakeLists.txt
+index 0f30035f12..987d4d6d5b 100644
+--- a/src/Native/Unix/CMakeLists.txt
++++ b/src/Native/Unix/CMakeLists.txt
+@@ -21,6 +21,7 @@ add_compile_options(-Wno-typedef-redefinition)
+ add_compile_options(-Wno-unused-local-typedef)
+ add_compile_options(-Wno-c99-extensions)
+ add_compile_options(-Wno-c11-extensions)
++add_compile_options(-Wno-alloca)
+ add_compile_options(-fPIC)
+ add_compile_options(-I${CMAKE_CURRENT_SOURCE_DIR}/Common)
+ add_compile_options(-I${CMAKE_CURRENT_BINARY_DIR}/Common)
+-- 
+2.18.0
+
